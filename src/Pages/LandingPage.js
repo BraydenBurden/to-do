@@ -9,8 +9,11 @@ import {
 } from "@mui/material";
 import AboutSection from "./LandingPageSections/AboutSection";
 import ContactSection from "./LandingPageSections/ContactSection";
+import { useNavigate } from "react-router-dom";
 
 function LandingPage() {
+  const navigate = useNavigate();
+
   return (
     <div>
       {/* Top Bar with Login and Signup */}
@@ -19,8 +22,12 @@ function LandingPage() {
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             Task Organizer
           </Typography>
-          <Button color="inherit">Login</Button>
-          <Button color="inherit">Sign Up</Button>
+          <Button color="inherit" onClick={() => navigate("/login")}>
+            Login
+          </Button>
+          <Button color="inherit" onClick={() => navigate("/sign-up")}>
+            Sign Up
+          </Button>
         </Toolbar>
       </AppBar>
 
