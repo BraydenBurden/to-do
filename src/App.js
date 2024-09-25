@@ -1,24 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import { ThemeProvider, CssBaseline, Button } from "@mui/material";
+import { lightTheme, darkTheme } from "./Theme"; // Import the themes
+import LandingPage from "./Pages/LandingPage";
 
 function App() {
+  const [darkMode, setDarkMode] = useState(false); // State to manage light/dark mode
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
+      <CssBaseline />{" "}
+      {/* Ensures global styles like background color and text color are applied */}
+      <LandingPage />
+      {/* Toggle button for dark/light mode */}
+      <Button
+        variant="contained"
+        color="primary"
+        onClick={() => setDarkMode(!darkMode)}
+        style={{ marginTop: "20px" }}
+      >
+        Toggle {darkMode ? "Light" : "Dark"} Mode
+      </Button>
+    </ThemeProvider>
   );
 }
 
