@@ -33,7 +33,15 @@ const LoginPage = () => {
         password,
       });
 
-      const { success, user } = response.data;
+      const { success } = response.data;
+      const user = {
+        id: response.data.user.id,
+        firstName: response.data.user.first_name,
+        lastName: response.data.user.last_name,
+        email: response.data.user.email,
+        lastSignIn: response.data.user.last_sign_in,
+        firstSignIn: response.data.user.last_sign_in ? false : true,
+      };
 
       if (success) {
         // Login succeeded

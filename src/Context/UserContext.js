@@ -8,17 +8,21 @@ export const useUser = () => useContext(UserContext);
 
 // UserProvider component that will wrap the app and provide the context
 export const UserProvider = ({ children }) => {
-  // Define the state to hold user data
+  // Define the state to hold user data, including the new firstSignIn field
   const [user, setUser] = useState({
     firstName: "",
     lastName: "",
     email: "",
     lastSignIn: "",
+    firstSignIn: "", // Added firstSignIn to the user state
   });
 
   // Function to update the user data
   const updateUser = (userData) => {
-    setUser(userData);
+    setUser((prevUser) => ({
+      ...prevUser, // Keep previous user data
+      ...userData, // Update with new user data
+    }));
   };
 
   return (

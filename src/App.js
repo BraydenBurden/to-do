@@ -6,6 +6,7 @@ import LandingPage from "./Pages/LandingPage";
 import LoginPage from "./Pages/LoginPage";
 import SignUpPage from "./Pages/SignUpPage";
 import Dashboard from "./Pages/Dashboard";
+import ProjectsPage from "./Pages/ProjectPage";
 import { UserProvider } from "./Context/UserContext";
 import axios from "axios";
 
@@ -23,6 +24,7 @@ function App() {
             <Route path="/login" element={<LoginPage />} />
             <Route path="/sign-up" element={<SignUpPage />} />
             <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/projects" element={<ProjectsPage />} />
           </Routes>
           <Button
             variant="contained"

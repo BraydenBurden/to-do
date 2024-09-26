@@ -20,10 +20,13 @@ import {
   Assignment as AssignmentIcon,
   Person as PersonIcon,
   Settings as SettingsIcon,
+  Logout as LogoutIcon,
 } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
+import { useUser } from "../../Context/UserContext";
 
 const CustomAppBar = () => {
+  const { updateUser } = useUser();
   const navigate = useNavigate();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [drawerOpen, setDrawerOpen] = React.useState(false);
@@ -56,6 +59,13 @@ const CustomAppBar = () => {
 
   const handleSettingsClick = () => {
     navigate("/settings");
+    handleUserMenuClose();
+  };
+
+  const handleLogoutClick = () => {
+    // Add logout logic here
+    updateUser(null);
+    navigate("/");
     handleUserMenuClose();
   };
 
@@ -94,6 +104,12 @@ const CustomAppBar = () => {
           <SettingsIcon />
         </ListItemIcon>
         <ListItemText primary="Settings" />
+      </ListItem>
+      <ListItem button onClick={handleLogoutClick}>
+        <ListItemIcon>
+          <LogoutIcon />
+        </ListItemIcon>
+        <ListItemText primary="Logout" />
       </ListItem>
     </List>
   );
@@ -158,6 +174,7 @@ const CustomAppBar = () => {
             </MenuItem>
             <MenuItem onClick={handleTeamsClick}>Teams</MenuItem>
             <MenuItem onClick={handleSettingsClick}>Settings</MenuItem>
+            <MenuItem onClick={handleLogoutClick}>Logout</MenuItem>
           </Menu>
         )}
 

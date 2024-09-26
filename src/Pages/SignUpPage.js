@@ -75,6 +75,12 @@ const SignUpPage = () => {
     }
   };
 
+  const resendVerificationEmail = () => {
+    axios.post("/registration/resendVerificationEmail", {
+      email: email,
+    });
+  };
+
   const validatePassword = (password) => {
     const hasUpperCase = /[A-Z]/.test(password);
     const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(password);
@@ -262,12 +268,13 @@ const SignUpPage = () => {
         </>
       )}
 
-      {emailSent && !isSubmitted && (
+      {isSubmitted && (
         <Button
           variant="outlined"
           color="primary"
           fullWidth
           style={{ marginTop: "20px" }}
+          onClick={resendVerificationEmail}
         >
           Resend Verification Email
         </Button>

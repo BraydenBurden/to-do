@@ -1,29 +1,38 @@
 // src/pages/Dashboard.js
 import React from "react";
-import { Container, Typography, Box, Grid, Paper } from "@mui/material";
+import { Container, Typography, Box, Grid, Paper, Link } from "@mui/material";
 import CustomAppBar from "./SiteComponents/AppBar";
+import { useUser } from "../Context/UserContext";
 
 const Dashboard = () => {
+  const { user } = useUser();
+  console.log(user);
+
   return (
     <div>
       <CustomAppBar />
       <Container sx={{ marginTop: "5rem" }}>
         <Box my={4}>
           <Typography variant="h4" component="h1" gutterBottom>
-            Welcome to Your Dashboard
+            Welcome {user.firstName}!
           </Typography>
-          <Box my={4}>
-            <Typography variant="h6">Hello, User!</Typography>
-            <Typography variant="body1">
-              Here are some actions to help you get started:
-            </Typography>
-            <Typography variant="body2" color="primary">
-              - Check your projects
-            </Typography>
-            <Typography variant="body2" color="primary">
-              - Update your profile
-            </Typography>
-          </Box>
+          {user.firstSignIn && (
+            <Box my={4}>
+              <Typography variant="body1">
+                Here are some actions to help you get started:
+              </Typography>
+              <Link href="http://localhost:3000/projects" underline="hover">
+                <Typography variant="body2" color="primary">
+                  Check your projects
+                </Typography>
+              </Link>
+              <Link href="http://localhost:3000/profile" underline="hover">
+                <Typography variant="body2" color="primary">
+                  Update your profile
+                </Typography>
+              </Link>
+            </Box>
+          )}
 
           <Typography variant="h5" gutterBottom>
             Your Recent Projects
